@@ -2,7 +2,6 @@
 
 use Backend\Classes\FormField;
 use Backend\Classes\FormWidgetBase;
-use Exception;
 
 class Widget extends FormWidgetBase
 {
