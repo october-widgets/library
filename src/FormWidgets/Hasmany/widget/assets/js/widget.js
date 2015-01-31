@@ -12,6 +12,7 @@
         this.$list      = this.$el.find('[data-hasmany-list]')
         this.$template  = this.$el.find('script[data-hasmany-template]')
         this.$editor    = this.$el.find('script[data-hasmany-editor]')
+        this.validation = this.$el.data('validation')
         this.sortable   = sortable
         this.init()
     }
@@ -122,13 +123,6 @@
             self.$popupContainer = $(e.relatedTarget)
             self.$popupForm = self.$popupContainer.find('form')
 
-            // Apply jquery validation to the subform
-            if (self.$el.attr('data-validation')) {
-                self.$popupForm.attr('data-validation', self.$el.attr('data-validation'))
-                if (self.$el.attr('data-validation-messages'))
-                    self.$popupForm.attr('data-validation-messages', self.$el.attr('data-validation-messages'))
-            }
-
             self.loadProperties($item)
             $(document).trigger('render')
 
@@ -137,7 +131,7 @@
                 var $focused = $(':focus');
                 if(e.which == 13 && !$focused.is('textarea')) {
                     e.preventDefault()
-                    self.applyChanges($item)
+                    self.validateAndSave($item)
                     return false
                 }
             })
@@ -151,7 +145,7 @@
 
             // Attach a save handler to the "apply" button
             $('button[data-control="apply-btn"]', self.$popupContainer).on('click', function() {
-                self.applyChanges($item)
+                self.validateAndSave($item)
                 return false
             })
 
@@ -184,6 +178,30 @@
     }
 
     /**
+     * Validate the related model, and calls applyChanges if it passes
+     */
+    HasManyEditor.prototype.validateAndSave = function ($item) {
+        var self = this,
+            buttonContainer = this.$popupContainer.find('.modal-footer');
+        
+        buttonContainer.loadIndicator({text: 'Saving...'})
+
+        // Validate the related model
+        if (this.validation.length) {
+            this.$popupForm.request(this.validation, {
+                success: function(data) {
+                    self.applyChanges($item)
+                },
+                complete: function() {
+                    buttonContainer.loadIndicator('hide')
+                }
+            })
+        }
+        // No validation required
+        else this.applyChanges($item)
+    }
+
+    /**
      * Apply changes
      */
     HasManyEditor.prototype.applyChanges = function ($item) {
@@ -191,14 +209,6 @@
             data = {},
             propertyNames = this.$el.data('properties'),
             original = $item.data('properties')
-
-        if (self.$popupForm.attr('data-validation') !== undefined) {
-            var validationError = self.$popupForm.validate(1);
-            if (validationError) {
-                $.oc.flashMsg({text: validationError, 'class': 'error', 'interval': 3})
-                return false
-            }
-        }
 
         // Loop through form items and build data array
         $.each(original, function(key, value) {

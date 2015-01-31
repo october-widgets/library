@@ -7,10 +7,11 @@
         <?= $relatedWidget->render() ?>
     <form>
 </div>
-<div class="modal-footer">
+<div class="modal-footer loading-indicator-container">
     <button
         type="button"
         class="btn btn-primary"
+        data-load-indicator="<?= e(trans('system::lang.event_log.empty_loading')) ?>"
         data-control="apply-btn">
         <?= e(trans('backend::lang.form.apply')) ?>
     </button>

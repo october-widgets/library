@@ -28,6 +28,17 @@ class Widget extends FormWidgetBase {
     }
 
     /**
+     * Ajax handler to validate the related model
+     */
+    public function onValidateModel()
+    {
+        foreach (post() as $key => $value) {
+            $this->relatedModel->$key = $value;
+        }
+        $this->relatedModel->validate();
+    }
+
+    /**
      * Return the widget
      */
     public function render()
@@ -64,6 +75,7 @@ class Widget extends FormWidgetBase {
         $this->vars['relatedModel']     = $this->relatedModel;
         $this->vars['relatedName']      = $parts[3];
         $this->vars['properties']       = Schema::getColumnListing($this->relatedModel->table);
+        $this->vars['validation']       = $this->getEventHandler('onValidateModel');
         
         $this->prepareItems($this->model->$fieldName, $partial);
     }
@@ -96,8 +108,7 @@ class Widget extends FormWidgetBase {
     public function loadAssets()
     {
         $this->addJs('js/twig.min.js');
-        $this->addJs('js/widget.js', 'core');
-        $this->addJs('js/validator.min.js');
+        $this->addJs('js/widget.js');
         $this->addCss('css/widget.css');
 
         if (isset($this->config->default))

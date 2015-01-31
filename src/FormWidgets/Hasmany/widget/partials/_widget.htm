@@ -1,13 +1,7 @@
 <div class="hasmanywidget"
     data-alias="<?= $this->alias ?>"
     data-properties="<?= htmlspecialchars(json_encode($properties)) ?>"
-    <?php
-    if (isset($relatedModel->rules))
-        echo 'data-validation="'.htmlspecialchars(json_encode($relatedModel->rules)).'"';
-
-    if (isset($relatedModel->customMessages))
-        echo ' data-validation-messages="'.htmlspecialchars(json_encode($relatedModel->customMessages)).'"';
-    ?>
+    data-validation="<?= $validation ?>"
     data-hasmany-container
 >
 
