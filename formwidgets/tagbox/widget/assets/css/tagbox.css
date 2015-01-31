@@ -1,0 +1,71 @@
+/* The input form element */
+.owl-tagbox .tagbox-input {
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    padding: 4px 0;
+}
+
+/* The list containing our tags */
+.owl-tagbox .tagbox-ul {
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    color: #555555;
+    cursor: text;
+    display: block;
+    list-style: none;
+    margin: 0;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    overflow: hidden;
+    padding: 0 6px 6px;
+    width: 100%;
+}
+
+/* Tags are contained within <li> items */
+.owl-tagbox .tagbox-li {
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    line-height: 1.428571429;
+    margin: 6px 6px 0 0;
+}
+
+/* These are the actual tags */
+.owl-tagbox .tagbox-tag {
+    background-color: #405D7A;
+    border-radius: 2px;
+    border: 1px solid #000;
+    color: #dedede;
+    cursor: default;
+    padding: 3px 8px;
+}
+.owl-tagbox .tagbox-tag span.value { float: left; }
+.owl-tagbox .tagbox-tag span.remove-span { float: right; }
+
+/* Link for removing a tag */
+.owl-tagbox .tagbox-remove {
+    color: inherit;
+    cursor: pointer;
+    padding-left: 10px;
+    text-decoration: none;
+}
+.owl-tagbox .tagbox-remove:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* This class will add to pending backspace deletes */
+.owl-tagbox .tagbox-delete {
+    background-color: #E0444B;
+}
+
+/* This class will be flashed to display duplicates */
+.owl-tagbox .tagbox-flash {
+    background-color: #457A40 !important;
+}

@@ -1,0 +1,13 @@
+<div class="owl-tagbox">
+    <input id="<?= $this->alias ?>" type="text" data-tags="<?= htmlspecialchars($tags) ?>" />
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#<?= $this->alias ?>').tagbox({
+            name: "<?= $this->alias ?>",
+            sortable: <?= $sortable ?>,
+            placeholder: "<?= $placeholder ?>"
+        });
+    })
+</script>
