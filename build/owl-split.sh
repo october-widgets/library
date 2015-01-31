@@ -3,5 +3,5 @@
 #
 
 ./git-subsplit.sh init git@github.com:october-widgets/library.git
-./git-subsplit.sh publish --no-tags src/FormWidgets/Comment:git@github.com:october-owl/comment.git
+./git-subsplit.sh publish --no-tags src/FormWidgets/Comment:git@github.com:october-widget/comment.git
 rm -rf .subsplit/
