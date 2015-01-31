@@ -43,4 +43,4 @@ relationship:
     type: owl-hasmany
     partial: @/plugins/author/plugin/models/relationship/_partial.htm
 ```
-To enable drag-and-drop reordering, define a ```sort_column``` that corresponds to the related model's "order by" attribute.
+To enable drag-and-drop reordering, define a ```sort_column``` that corresponds to the related model's "order by" attribute. You may also customize the appearance of the add button by specifying a ```add_label``` or ```add_icon```.

@@ -3,6 +3,7 @@
 use Backend\Classes\FormField;
 use Backend\Classes\FormWidgetBase;
 use Exception;
+use Schema;
 use Twig_Environment;
 use Twig_Loader_Array;
 
@@ -62,6 +63,7 @@ class Widget extends FormWidgetBase {
         $this->vars['relatedWidget']    = $this->makeWidget('Backend\Widgets\Form', $relatedWidget);
         $this->vars['relatedModel']     = $this->relatedModel;
         $this->vars['relatedName']      = $parts[3];
+        $this->vars['properties']       = Schema::getColumnListing($this->relatedModel->table);
         
         $this->prepareItems($this->model->$fieldName, $partial);
     }

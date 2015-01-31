@@ -1,6 +1,6 @@
 <div class="hasmanywidget"
     data-alias="<?= $this->alias ?>"
-    data-properties="<?= htmlspecialchars(json_encode($relatedModel->fillable)) ?>"
+    data-properties="<?= htmlspecialchars(json_encode($properties)) ?>"
     <?php
     if (isset($relatedModel->rules))
         echo 'data-validation="'.htmlspecialchars(json_encode($relatedModel->rules)).'"';
@@ -24,7 +24,12 @@
         class="add-item"
         data-control="add-item"
     >
-        <i class="icon-plus"></i>Add <?= $relatedName ?>
+        <i class="<?= isset($this->config->add_icon)
+                        ? $this->config->add_icon
+                        : 'icon-plus'; ?>"></i>
+            <?= isset($this->config->add_label)
+                ? $this->config->add_label
+                : "Add $relatedName"; ?>
     </a>
 
     <!-- List item template -->
