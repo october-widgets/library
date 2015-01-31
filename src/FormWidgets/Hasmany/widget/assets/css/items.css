@@ -1,0 +1,76 @@
+ol[data-hasmany-list] {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+}
+
+
+
+ol[data-hasmany-list] li {
+    position: relative;
+    height: 60px;
+    color: #666;
+}
+ol[data-hasmany-list] li:hover, ol[data-hasmany-list] .sortable-placeholder {
+    background: #58B6F7;
+    color: #fefefe;
+}
+
+ol[data-hasmany-list] li .item {
+    display: table;
+    height: 60px;
+    width: 100%;
+    position: absolute;
+}
+
+ol[data-hasmany-list] li .icon {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 22px;
+}
+ol[data-hasmany-list] li .icon i {
+    display: block;
+    width: 60px;
+    text-align: center;
+}
+
+ol[data-hasmany-list] li .content {
+    display: table-cell; 
+    vertical-align: middle;
+    width: 50%;
+}
+ol[data-hasmany-list] li .content.no-icon {
+    padding-left: 15px;
+}
+
+ol[data-hasmany-list] li .content .label {
+    
+}
+
+ol[data-hasmany-list] li .actions {
+    display: table-cell; 
+    vertical-align: middle;
+    text-align: right;
+    width: 50%;
+}
+ol[data-hasmany-list] li .actions a {
+    font-size: 22px;
+    float: right;
+    margin-left: 1px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    display: none;
+}
+ol[data-hasmany-list] li:hover .actions a, ol[data-hasmany-list] .sortable-placeholder .actions a {
+    background: #2581B8;
+    text-align: center;
+    border-right: 1px solid #328ec8;
+    text-decoration: none;
+    color: #fefefe;
+    display: inline-block;
+}
+ol[data-hasmany-list] li .actions [data-control="sort-handle"] {
+    cursor: move;
+}

@@ -1,0 +1,54 @@
+<div class="hasmanywidget"
+    data-alias="<?= $this->alias ?>"
+    data-properties="<?= htmlspecialchars(json_encode($relatedModel->fillable)) ?>"
+    <?php
+    if (isset($relatedModel->rules))
+        echo 'data-validation="'.htmlspecialchars(json_encode($relatedModel->rules)).'"';
+
+    if (isset($relatedModel->customMessages))
+        echo ' data-validation-messages="'.htmlspecialchars(json_encode($relatedModel->customMessages)).'"';
+    ?>
+    data-hasmany-container
+>
+
+    <!-- Relation list -->
+    <ol data-hasmany-list>
+        <?php foreach ($items as $item): ?>
+            <?= $this->makePartial('item', ['item' => $item]) ?>
+        <?php endforeach ?>
+    </ol>
+
+    <!-- Add button -->
+    <a href="javascript:;"
+        data-hotkey="ctrl+i, cmd+i"
+        class="add-item"
+        data-control="add-item"
+    >
+        <i class="icon-plus"></i>Add <?= $relatedName ?>
+    </a>
+
+    <!-- List item template -->
+    <script type="text/template" data-hasmany-template>
+        <?= $this->makePartial('item', [
+            'item' => [
+                'data' => false,
+                'html' => $this->makePartial($partial)
+            ]
+        ]); ?>
+    </script>
+
+    <!-- Item editor -->
+    <script type="text/template" data-hasmany-editor>
+        <?= $this->makePartial('editor') ?>
+    </script>
+
+    <!-- Attach the hasManyEditor -->
+    <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('[data-hasmany-container]').hasManyEditor(
+                '<?= $this->alias ?>',
+                <?= isset($this->config->sort_column) ? 'true' : 'false' ?>
+            )
+        })
+    </script>
+</div>
