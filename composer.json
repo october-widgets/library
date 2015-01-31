@@ -1,5 +1,5 @@
 {
-    "name": "owl/library",
+    "name": "owl/owl",
     "description": "October Widget Library",
     "homepage": "http://scottbedard.net",
     "keywords": ["laravel", "octobercms"],
@@ -10,6 +10,6 @@
         }
     ],
     "autoload": {
-        "psr-4": {"Owl\\FormWidgets": "formwidgets/"}
+        "psr-4": {"Owl\\": "src/"}
     }
 }
