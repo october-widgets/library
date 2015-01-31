@@ -190,10 +190,10 @@
         if (this.validation.length) {
             this.$popupForm.request(this.validation, {
                 success: function(data) {
-                    self.applyChanges($item)
+                    // self.applyChanges($item)
                 },
                 complete: function() {
-                    buttonContainer.loadIndicator('hide')
+                    // buttonContainer.loadIndicator('hide')
                 }
             })
         }
