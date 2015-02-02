@@ -1,7 +1,9 @@
-<div class="hasmanywidget"
+<div class="owl-hasmany<?php if (isset($this->config->default)) echo ' default' ?>"
     data-alias="<?= $this->alias ?>"
     data-properties="<?= htmlspecialchars(json_encode($properties)) ?>"
-    data-validation="<?= $validation ?>"
+    <?php if(isset($relatedModel->rules) && $relatedModel->rules): ?>
+        data-validation="<?= $validation ?>"
+    <?php endif ?>
     data-hasmany-container
 >
 
@@ -18,12 +20,7 @@
         class="add-item"
         data-control="add-item"
     >
-        <i class="<?= isset($this->config->add_icon)
-                        ? $this->config->add_icon
-                        : 'icon-plus'; ?>"></i>
-            <?= isset($this->config->add_label)
-                ? $this->config->add_label
-                : "Add $relatedName"; ?>
+        <i class="<?= $add_icon ?>"></i><?= $add_label ?>
     </a>
 
     <!-- List item template -->
@@ -44,7 +41,7 @@
     <!-- Attach the hasManyEditor -->
     <script type="text/javascript">
         $(document).on('ready', function() {
-            $('[data-hasmany-container]').hasManyEditor(
+            $('[data-hasmany-container][data-alias="<?= $this->alias ?>"]').hasManyEditor(
                 '<?= $this->alias ?>',
                 <?= isset($this->config->sort_column) ? 'true' : 'false' ?>
             )

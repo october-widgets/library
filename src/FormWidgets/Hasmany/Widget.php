@@ -10,8 +10,12 @@ use Twig_Loader_Array;
 class Widget extends FormWidgetBase {
 
     /**
+     * {@inheritDoc}
+     */
+    public $defaultAlias = 'owl-hasmany';
+
+    /**
      * The related target model
-     * @var Model
      */
     public $relatedModel;
 
@@ -25,17 +29,6 @@ class Widget extends FormWidgetBase {
             throw new Exception('Unknown hasmany relationship "'.$this->fieldName.'".');
 
         $this->relatedModel = new $this->model->hasMany[$this->fieldName][0];
-    }
-
-    /**
-     * Ajax handler to validate the related model
-     */
-    public function onValidateModel()
-    {
-        foreach (post() as $key => $value) {
-            $this->relatedModel->$key = $value;
-        }
-        $this->relatedModel->validate();
     }
 
     /**
@@ -76,6 +69,8 @@ class Widget extends FormWidgetBase {
         $this->vars['relatedName']      = $parts[3];
         $this->vars['properties']       = Schema::getColumnListing($this->relatedModel->table);
         $this->vars['validation']       = $this->getEventHandler('onValidateModel');
+        $this->vars['add_icon']         = isset($this->config->add_icon) ? $this->config->add_icon : 'icon-plus';
+        $this->vars['add_label']        = isset($this->config->add_label) ? $this->config->add_label : "Add $parts[3]";
         
         $this->prepareItems($this->model->$fieldName, $partial);
     }
@@ -178,5 +173,18 @@ class Widget extends FormWidgetBase {
         }
 
         return FormField::NO_SAVE_DATA;
+    }
+
+    /**
+     * Ajax handler to validate the related model
+     */
+    public function onValidateModel()
+    {
+        if (isset($this->relatedModel->rules) && $this->relatedModel->rules) {
+            foreach (post() as $key => $value)
+                $this->relatedModel->$key = $value;
+            
+            $this->relatedModel->validate();
+        }
     }
 }

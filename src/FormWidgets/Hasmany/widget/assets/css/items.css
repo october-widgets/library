@@ -1,60 +1,62 @@
-ol[data-hasmany-list] {
+.owl-hasmany.default ol {
     list-style-type: none;
     margin: 0;
     padding: 0;
     font-size: 13px;
 }
 
-
-
-ol[data-hasmany-list] li {
+.owl-hasmany.default ol li {
     position: relative;
     height: 60px;
     color: #666;
 }
-ol[data-hasmany-list] li:hover, ol[data-hasmany-list] .sortable-placeholder {
+.owl-hasmany.default ol li:hover {
     background: #58B6F7;
     color: #fefefe;
 }
+.owl-hasmany.default ol .sortable-placeholder {
+    background: #fefefe;
+    border: 1px dotted #58B6F7;
+}
 
-ol[data-hasmany-list] li .item {
+.owl-hasmany.default ol li .item {
     display: table;
     height: 60px;
     width: 100%;
     position: absolute;
 }
 
-ol[data-hasmany-list] li .icon {
+.owl-hasmany.default ol li .icon {
     display: table-cell;
     vertical-align: middle;
     font-size: 22px;
 }
-ol[data-hasmany-list] li .icon i {
+.owl-hasmany.default ol li .icon i {
     display: block;
     width: 60px;
     text-align: center;
 }
 
-ol[data-hasmany-list] li .content {
+.owl-hasmany.default ol li .content {
     display: table-cell; 
     vertical-align: middle;
     width: 50%;
 }
-ol[data-hasmany-list] li .content.no-icon {
+.owl-hasmany.default ol li .content.no-icon {
     padding-left: 15px;
 }
 
-ol[data-hasmany-list] li .content .label {
+.owl-hasmany.default ol li .content .label {
     
 }
 
-ol[data-hasmany-list] li .actions {
+.owl-hasmany.default ol li .actions {
     display: table-cell; 
     vertical-align: middle;
     text-align: right;
     width: 50%;
 }
-ol[data-hasmany-list] li .actions a {
+.owl-hasmany.default ol li .actions a {
     font-size: 22px;
     float: right;
     margin-left: 1px;
@@ -63,7 +65,7 @@ ol[data-hasmany-list] li .actions a {
     line-height: 60px;
     display: none;
 }
-ol[data-hasmany-list] li:hover .actions a, ol[data-hasmany-list] .sortable-placeholder .actions a {
+.owl-hasmany.default ol li:hover .actions a, ol .sortable-placeholder .actions a {
     background: #2581B8;
     text-align: center;
     border-right: 1px solid #328ec8;
@@ -71,6 +73,6 @@ ol[data-hasmany-list] li:hover .actions a, ol[data-hasmany-list] .sortable-place
     color: #fefefe;
     display: inline-block;
 }
-ol[data-hasmany-list] li .actions [data-control="sort-handle"] {
+.owl-hasmany.default ol li .actions [data-control="sort-handle"] {
     cursor: move;
 }

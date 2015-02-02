@@ -1,8 +1,8 @@
-.hasmanywidget li[data-hasmany-item] {
+.owl-hasmany li {
     cursor: pointer;
 }
 
-.hasmanywidget .add-item {
+.owl-hasmany .add-item {
     display: block;
     margin: 20px;
     padding: 13px 15px;
@@ -17,15 +17,25 @@
     vertical-align: middle;
 }
 
-.hasmanywidget .add-item i {
+.owl-hasmany .add-item i {
     margin-right: 10px;
     font-size: 14px;
 }
 
-.hasmanywidget .add-item:hover {
+.owl-hasmany .add-item:hover {
     text-decoration: none;
     background-color: #58b6f7 !important;
     color: #ffffff !important;
     border: none;
     padding: 15px 17px;
+}
+
+.owl-hasmany .loading-indicator span {
+    right: 165px;
+    left: auto;
+    top: 15px;
+}
+.owl-hasmany .loading-indicator div {
+    right: 25px;
+    top: 15px;
 }

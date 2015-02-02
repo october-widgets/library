@@ -79,13 +79,19 @@
      * Removes an item from the list
      */
     HasManyEditor.prototype.removeItem = function (target) {
-        if (!confirm('Do you really want to delete this item?'))
-            return
-
-        $(target).closest('li[data-hasmany-item]').remove()
-        $.oc.flashMsg({text: 'The item has been removed, it will be deleted when you click "Save".', 'class': 'success', 'interval': 3})
-
-        return false
+        sweetAlert({
+            title: "Do you really want to delete this item?",
+            showCancelButton: true,
+            confirmButtonText: "Confirm"
+        }, function(){
+            $(target).closest('li[data-hasmany-item]').remove()
+            $.oc.flashMsg({
+                text: 'The item will be deleted upon saving.',
+                'class': 'success',
+                'interval': 3
+            })
+            return false
+        })        
     }
 
     /**
@@ -184,19 +190,20 @@
         var self = this,
             buttonContainer = this.$popupContainer.find('.modal-footer');
         
-        buttonContainer.loadIndicator({text: 'Saving...'})
+        buttonContainer.loadIndicator({text: 'Applying changes...'})
 
         // Validate the related model
-        if (this.validation.length) {
+        if (this.validation !== undefined) {
             this.$popupForm.request(this.validation, {
                 success: function(data) {
-                    // self.applyChanges($item)
+                    self.applyChanges($item)
                 },
                 complete: function() {
-                    // buttonContainer.loadIndicator('hide')
+                    buttonContainer.loadIndicator('hide')
                 }
             })
         }
+        
         // No validation required
         else this.applyChanges($item)
     }
