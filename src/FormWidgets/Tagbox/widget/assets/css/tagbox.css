@@ -4,8 +4,13 @@
     font-family: inherit;
     font-size: inherit;
     outline: none;
-    padding: 4px 0;
+    padding: 5px;
+    font-size: 13px;
 }
+.owl-tagbox input[data-control="tagbox-input"]::-webkit-input-placeholder { color: #ccc; }
+.owl-tagbox input[data-control="tagbox-input"]:-moz-placeholder { color: #ccc; }
+.owl-tagbox input[data-control="tagbox-input"]::-moz-placeholder { color: #ccc; }
+.owl-tagbox input[data-control="tagbox-input"]:-ms-input-placeholder { color: #ccc; }
 
 /* The list containing our tags */
 .owl-tagbox ul {
