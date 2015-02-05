@@ -7,13 +7,15 @@
     /**
      * Constructor
      */
-    var HasManyEditor = function (el, sortable) {
-        this.$el = $(el)
+    var HasManyEditor = function (el, alias, sortable) {
+        this.$el        = $(el)
         this.$list      = this.$el.find('[data-hasmany-list]')
         this.$template  = this.$el.find('script[data-hasmany-template]')
         this.$editor    = this.$el.find('script[data-hasmany-editor]')
         this.validation = this.$el.data('validation')
+        this.alias      = alias
         this.sortable   = sortable
+
         this.init()
     }
 
@@ -157,8 +159,9 @@
 
             // Fire popup opened event
             $('.owl-hasmany').trigger('popupOpened', {
-                popupForm: self.$popupForm,
-                item: $item
+                alias: self.alias,
+                item: $item,
+                popupForm: self.$popupForm
             });
 
             return false
@@ -175,10 +178,11 @@
 
             // Fire popup closed
             $('.owl-hasmany').trigger('popupClosed', {
-                popupForm: self.$popupForm,
-                item: $item
+                alias: self.alias,
+                item: $item,
+                popupForm: self.$popupForm
             });
-            
+
             return false
         })
 
@@ -273,7 +277,7 @@
      * Bind the container to our editor
      */
     $.fn.hasManyEditor = function (alias, sortable) {
-        return new HasManyEditor( $('div[data-alias="' + alias + '"]'), sortable )
+        return new HasManyEditor($('div[data-alias="' + alias + '"]'), alias, sortable)
     }
 
     $.fn.hasManyEditor.Constructor = HasManyEditor
