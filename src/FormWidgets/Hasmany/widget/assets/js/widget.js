@@ -155,6 +155,12 @@
                 return false
             })
 
+            // Fire popup opened event
+            $('.owl-hasmany').trigger('popupOpened', {
+                popupForm: self.$popupForm,
+                item: $item
+            });
+
             return false
         })
 
@@ -166,6 +172,13 @@
 
             // Prevent dom pollution
             $('span[role="status"]').remove()
+
+            // Fire popup closed
+            $('.owl-hasmany').trigger('popupClosed', {
+                popupForm: self.$popupForm,
+                item: $item
+            });
+            
             return false
         })
 
