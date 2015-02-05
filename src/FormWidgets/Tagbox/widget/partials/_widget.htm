@@ -1,13 +1,30 @@
-<div class="owl-tagbox">
-    <input id="<?= $this->alias ?>" type="text" data-tags="<?= htmlspecialchars($tags) ?>" />
-</div>
+<div class="owl-tagbox" data-alias="<?= $this->alias ?>">
 
-<script type="text/javascript">
-    $(function() {
-        $('#<?= $this->alias ?>').tagbox({
-            name: "<?= $this->alias ?>",
-            sortable: <?= $sortable ?>,
-            placeholder: "<?= $placeholder ?>"
-        });
-    })
-</script>
+    <!-- Tagbox container -->
+    <ul data-control="list">
+        <li data-control="last">
+            <input data-control="tagbox-input" type="text" placeholder="<?= $placeholder ?>" />
+        </li>
+    </ul>
+
+    <!-- Attach tagbox handler -->
+    <script type="text/javascript">
+        $(function() {
+            $('.owl-tagbox[data-alias="<?= $this->alias ?>"]').tagbox(
+                <?= $config ?>
+            )
+        })            
+    </script>
+
+    <!-- Tag template -->
+    <script type="text/template" data-control="template">
+        <li data-control="tag">
+            <input type="hidden" name="<?= $this->alias ?>[]"> 
+            <span data-control="display"></span>
+            <span data-control="remove">
+                <i class="icon-times"></i>
+            </span>
+        </li>
+    </script>
+    
+</div>

@@ -20,20 +20,46 @@ class Widget extends FormWidgetBase
      */
     public function prepareVars()
     {
+        // Break key codes
+        if (isset($this->config->break_codes)) {
+            $config['break_codes'] = is_array($this->config->break_codes)
+                ? $this->config->break_codes
+                : [$this->config->break_codes];
+        } else {
+            $config['break_codes'] = [13, 9];
+        }
+
+        // Slugify
+        $config['slugify'] = isset($this->config->slugify) && 
+            filter_var($this->config->slugify, FILTER_VALIDATE_BOOLEAN);
+
+        // Accepted characters
+        $config['filter'] = isset($this->config->filter)
+            ? $this->config->filter
+            : false;
+
+        // Validation rules
+        $config['validation'] = isset($this->config->validation)
+            ? $this->config->validation
+            : false;
+
+        // Validation message
+        $config['validation_message'] = isset($this->config->validation_message)
+            ? $this->config->validation_message : 'The tag format is invalid.';
+
+        // Javascript configuration
+        $config['alias'] = $this->alias;  // Popup script bug
+        $this->vars['config'] = json_encode($config);
+
         // Pre-populated tags
         $fieldName = $this->fieldName;
         $this->vars['tags'] = is_array($this->model->$fieldName)
             ? implode(',', $this->model->$fieldName)
             : false;
 
-        // Sorting
-        $this->vars['sortable'] = isset($this->config->sortable) && filter_var($this->config->sortable, FILTER_VALIDATE_BOOLEAN)
-            ? 'true'
-            : 'false';
-
         // Placeholder
         $this->vars['placeholder'] = isset($this->config->placeholder)
-            ? $this->config->placeholder
+            ? htmlspecialchars($this->config->placeholder)
             : "Enter tags...";
     }
 
@@ -42,7 +68,6 @@ class Widget extends FormWidgetBase
      */
     public function loadAssets()
     {
-        $this->addJs('js/jquery-ui.custom.min.js');
         $this->addJs('js/tagbox.js');
         $this->addCss('css/tagbox.css');
     }
