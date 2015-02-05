@@ -5,7 +5,7 @@
     </div>
     <div class="modal-body form-container">
         <form>
-            <?= $relatedWidget->render() ?>
+            <?= str_replace('script>', 'script&gt;', $relatedWidget->render()) ?>
         <form>
     </div>
     <div class="modal-footer loading-indicator-container">

@@ -135,7 +135,7 @@
             // Catch all other enter-key events
             self.$popupContainer.keypress(function(e) {
                 var $focused = $(':focus');
-                if(e.which == 13 && !$focused.is('textarea')) {
+                if(e.which == 13 && !$focused.is('textarea') && $focused.data('control') != 'tagbox-input') {
                     e.preventDefault()
                     self.validateAndSave($item)
                     return false
@@ -169,9 +169,13 @@
             return false
         })
 
+        // The editor has script tags cleaned to prevent nesting. Before opening
+        // the pop up, we have to convert them back.
+        var editorHtml = this.$editor.html().split('script&gt;').join('script>')
+
         // Open the editor
         $item.popup({
-            content: this.$editor.html(),
+            content: editorHtml,
             placement: 'center',
             modal: true,
             closeOnPageClick: true,
