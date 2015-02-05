@@ -61,6 +61,9 @@ class Widget extends FormWidgetBase
         $this->vars['placeholder'] = isset($this->config->placeholder)
             ? htmlspecialchars($this->config->placeholder)
             : "Enter tags...";
+
+        // Prepopulated tags
+        $this->vars['tags'] = $this->model->$fieldName;
     }
 
     /**

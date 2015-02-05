@@ -2,6 +2,12 @@
 
     <!-- Tagbox container -->
     <ul data-control="list">
+        <?php
+        if (isset($tags) && is_array($tags) && $tags) {
+            foreach ($tags as $tag)
+                echo $this->makePartial('tag', ['tag' => $tag]);
+        }
+        ?>
         <li data-control="last">
             <input data-control="tagbox-input" type="text" placeholder="<?= $placeholder ?>" />
         </li>
@@ -18,13 +24,7 @@
 
     <!-- Tag template -->
     <script type="text/template" data-control="template">
-        <li data-control="tag">
-            <input type="hidden" name="<?= $this->alias ?>[]"> 
-            <span data-control="display"></span>
-            <span data-control="remove">
-                <i class="icon-times"></i>
-            </span>
-        </li>
+        <?= $this->makePartial('tag') ?>
     </script>
     
 </div>

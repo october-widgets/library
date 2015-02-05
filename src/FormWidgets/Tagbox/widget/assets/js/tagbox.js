@@ -57,6 +57,9 @@
             self.$list.addClass('focused')
         })
         this.$input.on('blur', function() {
+            if (self.$input.val().length > 0) {
+                self.addTag()
+            }
             self.$list.removeClass('focused')
         })
     }
@@ -88,6 +91,7 @@
                 'class': 'error',
                 'interval': 3
             })
+            this.$input.focus()
             return false
         }
 
