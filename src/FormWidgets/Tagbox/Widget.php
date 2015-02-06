@@ -81,7 +81,12 @@ class Widget extends FormWidgetBase
      */
     public function getSaveValue($value)
     {
-        return post($this->fieldName);
+        $data = [];
+        foreach (post($this->fieldName) as $field) {
+            if ($field)
+                $data[] = $field;
+        }
+        return $data;
     }
 
 }

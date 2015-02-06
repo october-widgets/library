@@ -256,6 +256,7 @@
             if (key != 'created_at' && key != 'updated_at')
                 data[key] = value
         })
+
         $.each(propertyNames, function() {
             var propertyName = this,
                 $input = self.$popupForm.find('*[name="' + propertyName + '"]')
@@ -263,15 +264,12 @@
             // Process array inputs
             if (propertyName.substr(propertyName.length - 2) == '[]') {
                 var arrayName = propertyName.substr(0, propertyName.length - 2)
-                if (!$input.length) {
-                    data[arrayName] = [];
-                } else {
-                    var formArray = []
-                    $input.each(function() {
+                var formArray = []
+                $input.each(function() {
+                    if ($(this).val().length)
                         formArray.push($(this).val())
-                    })
-                    data[arrayName] = formArray
-                }
+                })
+                data[arrayName] = formArray
 
             // Process checkbox inputs
             } else if ($input.is(':checkbox')) {
