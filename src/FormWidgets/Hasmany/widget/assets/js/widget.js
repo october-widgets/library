@@ -80,20 +80,47 @@
     /**
      * Removes an item from the list
      */
-    HasManyEditor.prototype.removeItem = function (target) {
+    HasManyEditor.prototype.removeItem = function ($target) {
+        var self = this,
+            $item = $target.closest('li'),
+            data = $item.data('properties')
+
         sweetAlert({
             title: "Do you really want to delete this item?",
             showCancelButton: true,
-            confirmButtonText: "Confirm"
+            confirmButtonText: "Yes"
         }, function(){
-            $(target).closest('li[data-hasmany-item]').remove()
-            $.oc.flashMsg({
-                text: 'The item will be deleted upon saving.',
-                'class': 'success',
-                'interval': 3
-            })
+
+            // Delete ajax request
+            if (data.id != undefined) {
+                $.request(self.alias + '::onDeleteModel', {
+                    data: {
+                        owl_id: data.id
+                    },
+                    complete: function() {
+                        self.deletedItem($item)
+                    }
+                })
+            } 
+
+            // No query needed, just remove the item
+            else self.deletedItem($item)
+
             return false
         })        
+    }
+
+    /**
+     * Lets the user know an item has been deleted, and removes it from the list
+     * @param   <li>    $item
+     */
+    HasManyEditor.prototype.deletedItem = function($item) {
+        $item.remove()
+        $.oc.flashMsg({
+            text: 'The item has been deleted.',
+            'class': 'success',
+            'interval': 3
+        })
     }
 
     /**

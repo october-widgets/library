@@ -9,9 +9,7 @@
 
     <!-- Relation list -->
     <ol data-hasmany-list>
-        <?php foreach ($items as $item): ?>
-            <?= $this->makePartial('item', ['item' => $item]) ?>
-        <?php endforeach ?>
+        <?= $this->makePartial('list', ['items' => $items]) ?>
     </ol>
 
     <!-- Add button -->

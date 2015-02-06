@@ -198,4 +198,12 @@ class Widget extends FormWidgetBase {
             $this->relatedModel->validate();
         }
     }
+
+    /**
+     * Deletes an item
+     */
+    public function onDeleteModel()
+    {
+        return $this->relatedModel->find(post('owl_id'))->delete();
+    }
 }
