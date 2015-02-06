@@ -1,7 +1,7 @@
 # Comment
 A simple placeholder widget for [OctoberCMS](http://octobercms.com).
 
-![Packagist](https://img.shields.io/packagist/dm/owl/comment.svg)
+![Packagist](https://img.shields.io/packagist/dt/owl/comment.svg)
 
 ### Installation
 To install the Comment widget, add the following to your plugin's ```composer.json``` file.

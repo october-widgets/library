@@ -1,7 +1,7 @@
 # Hasmany
 Has-many/belongs-to popup widget for [OctoberCMS](http://octobercms.com).
 
-![Packagist](https://img.shields.io/packagist/dm/owl/hasmany.svg)
+![Packagist](https://img.shields.io/packagist/dt/owl/hasmany.svg)
 
 ### Installation
 To install the Hasmany widget, add the following to your plugin's ```composer.json``` file.
