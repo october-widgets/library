@@ -89,7 +89,7 @@
     tagbox.prototype.addTag = function(tag) {
         this.filterInput()
 
-        if (tag.length == 0) {
+        if (!tag.length) {
             return false
         }
 
