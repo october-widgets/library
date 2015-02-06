@@ -109,10 +109,16 @@
         $.each(properties, function(propertyName) {
             var value = this,
                 $field = self.$popupForm.find('*[name="' + propertyName + '"]')
-            if ($field) {
-                if ($field.is(':checkbox')) {
+
+            if ($.isArray(value)) {
+                $(document).trigger('owl-array-fill', {
+                    fieldName: propertyName,
+                    value: value
+                })
+            } else if ($field) {
+                if ($field.is(':checkbox'))
                     $field.prop('checked', value)
-                } else
+                else
                     $field.val(value)
             }
         })
@@ -238,6 +244,13 @@
             propertyNames = this.$el.data('properties'),
             original = $item.data('properties')
 
+        this.$popupForm.find('*').filter(':input').each(function(){
+            var name = $(this).attr('name')
+            if (name !== undefined && $.inArray(name, propertyNames) == -1) {
+                propertyNames.push(name)
+            }
+        });
+
         // Loop through form items and build data array
         $.each(original, function(key, value) {
             if (key != 'created_at' && key != 'updated_at')
@@ -245,9 +258,26 @@
         })
         $.each(propertyNames, function() {
             var propertyName = this,
-                $input = self.$popupForm.find('*[name="' + propertyName + '"]').not('[type=hidden]')
-            if ($input.is(':checkbox')) {
+                $input = self.$popupForm.find('*[name="' + propertyName + '"]')
+        
+            // Process array inputs
+            if (propertyName.substr(propertyName.length - 2) == '[]') {
+                var arrayName = propertyName.substr(0, propertyName.length - 2)
+                if (!$input.length) {
+                    data[arrayName] = [];
+                } else {
+                    var formArray = []
+                    $input.each(function() {
+                        formArray.push($(this).val())
+                    })
+                    data[arrayName] = formArray
+                }
+
+            // Process checkbox inputs
+            } else if ($input.is(':checkbox')) {
                 data[propertyName] = $input.is(':checked') ? 1 : 0
+
+            // Assume everything else is a normal string input
             } else {
                 var value = $input.val()
                 if (value !== '' && value !== undefined)

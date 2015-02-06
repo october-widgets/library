@@ -21,6 +21,16 @@
     tagbox.prototype.init = function () {
         var self = this
 
+        // Populates the tagbox using the owl-array-fill event. This is used
+        // for dynamically created widgets.
+        $(document).on('owl-array-fill', function(e, data) {
+            if (data.fieldName == self.config.fieldName) {
+                data.value.forEach(function(tag) {
+                    self.addTag(tag)
+                })
+            }
+        });
+
         // Filter input
         this.$input.on('change keydown keyup paste', function() {
             self.filterInput()
@@ -31,7 +41,7 @@
             var code = e.keyCode || e.which
             if ($.inArray(code, self.config.break_codes) !== -1) {
                 e.preventDefault()
-                self.addTag()
+                self.addTag($(this).val())
             }
 
             // Listen for backspace removals
@@ -76,9 +86,8 @@
     /**
      * Add tag to list
      */
-    tagbox.prototype.addTag = function() {
+    tagbox.prototype.addTag = function(tag) {
         this.filterInput()
-        var tag = this.$input.val()
 
         if (tag.length == 0) {
             return false

@@ -2,7 +2,7 @@
 <li data-control="tag"
     <?php if (isset($tag)) echo "data-tag=\"$tag\"" ?>
 >
-    <input type="hidden" name="<?= $this->alias ?>[]"
+    <input type="hidden" name="<?= $this->fieldName ?>[]"
         <?php if (isset($tag)) echo "value=\"$tag\"" ?>
     >
     <span data-control="display">

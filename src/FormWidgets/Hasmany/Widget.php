@@ -88,8 +88,19 @@ class Widget extends FormWidgetBase {
         $twig = new Twig_Environment($loader);
 
         foreach ($relationships as $item) {
+
+            // Workaround to get toJson() returning an object instead of a
+            // string on jsonable attributes.
+            $data = [];
+            foreach ($item->attributes as $key => $value) {
+                if ($key == 'created_at' || $key == 'updated_at')
+                    continue;
+                $data[$key] = $item[$key];
+            }
+            $data = json_encode($data);
+
             $items[] = [
-                'data' => htmlspecialchars($item->toJson()),
+                'data' => htmlspecialchars($data),
                 'html' => $twig->render('item', $item->toArray())
             ];
         }

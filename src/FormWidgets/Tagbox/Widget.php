@@ -48,7 +48,7 @@ class Widget extends FormWidgetBase
             ? $this->config->validation_message : 'The tag format is invalid.';
 
         // Javascript configuration
-        $config['alias'] = $this->alias;  // Popup script bug
+        $config['fieldName'] = $this->fieldName;
         $this->vars['config'] = json_encode($config);
 
         // Pre-populated tags
@@ -81,7 +81,7 @@ class Widget extends FormWidgetBase
      */
     public function getSaveValue($value)
     {
-        return post($this->alias);
+        return post($this->fieldName);
     }
 
 }
