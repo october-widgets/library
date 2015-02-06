@@ -1,11 +1,13 @@
 # GeoAddress
 GeoAddress widget for [OctoberCMS](http://octobercms.com).
 
+![Packagist](https://img.shields.io/packagist/dm/owl/geoaddress.svg)
+
 ### Installation
 To install the GeoAddress widget, add the following to your plugin's ```composer.json``` file.
 ```json
 "require": {
-    "owl/geoaddress": "~1.0"
+    "owl/geoaddress": "dev-master"
 }
 ```
 Next, register the widget in your plugin's ```Plugin.php``` file.

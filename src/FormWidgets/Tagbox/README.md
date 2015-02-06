@@ -1,6 +1,8 @@
 # Tagbox
 Tag form widget for OctoberCMS.
 
+![Packagist](https://img.shields.io/packagist/dm/owl/tagbox.svg)
+
 ### Installation
 To install the Tagbox widget with your plugin, add the following to your plugin's ```composer.json``` file.
 
