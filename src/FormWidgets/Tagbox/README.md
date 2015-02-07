@@ -8,7 +8,7 @@ To install the Tagbox widget with your plugin, add the following to your plugin'
 
 ```json
 "require": {
-    "owl/tagbox": "~1.0"
+    "owl/tagbox": "~1.0@dev"
 }
 ```
 Next, register the widget in your plugin's ```Plugin.php``` file.

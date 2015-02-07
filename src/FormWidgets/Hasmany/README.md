@@ -7,7 +7,7 @@ Has-many/belongs-to popup widget for [OctoberCMS](http://octobercms.com).
 To install the Hasmany widget, add the following to your plugin's ```composer.json``` file.
 ```json
 "require": {
-    "owl/hasmany": "~1.0"
+    "owl/hasmany": "~1.0@dev"
 }
 ```
 Next, register the widget in your ```Plugin.php``` file.
