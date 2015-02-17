@@ -30,7 +30,7 @@ relationship:
     type: owl-hasmany
 ```
 
-Next, you'll need to define the default parameters, or a custom partial. The default parameters will create a list that is very similar to the Sitemap plugin's UI. You may use basic twig markup inside these fields, variable names will reference model attributes. The ```icon``` option should be a valid [Font-Autumn](http://daftspunk.github.io/Font-Autumn/) icon class, or omitted.
+Next, you'll need to define the default parameters, or a custom partial. The default parameters will create a list that is very similar to the Sitemap plugin's UI. You may use basic twig markup inside these fields, variable names will reference model attributes. The ```icon``` option should be a valid [Font-Autumn](http://daftspunk.github.io/Font-Autumn/) icon class, or ```false```.
 ```yaml
 relationship:
     type: owl-hasmany
@@ -45,4 +45,15 @@ relationship:
     type: owl-hasmany
     partial: @/plugins/author/plugin/models/relationship/_partial.htm
 ```
-To enable drag-and-drop reordering, define a ```sort_column``` that corresponds to the related model's "order by" attribute. You may also customize the appearance of the add button by specifying a ```add_label``` or ```add_icon```.
+There are a few additional parameters available to customize the widget's appearance. Defining a ```sortColumn``` enables drag-and-drop re-ordering. This value should reference the model's "order by" column name. Defining a ```formHeader``` will change the default header of popup windows. Defining an ```addLabel``` or ```addIcon``` will customize the appearance of the add button. ```addLabel```.
+
+Javascript events will be triggered when a popup window is opened or closed. Listening for these events can be useful when you wish to show / hide fields based on form values.
+```javascript
+$(document).bind("owl.hasmany.opened", function(e, data) {
+    // popup was opened
+});
+$(document).bind("owl.hasmany.closed", function(e, data) {
+    // popup was closed
+});
+```
+The ```data``` array will contain 3 keys. ```data.alias``` refers to the widget alias, ```data.item``` refers to the popup's cooresponding li element, and ```data.form``` references the popup form element.

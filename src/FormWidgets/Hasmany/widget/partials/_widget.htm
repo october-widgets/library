@@ -1,48 +1,32 @@
-<div class="owl-hasmany<?php if (isset($this->config->default)) echo ' default' ?>"
-    data-alias="<?= $this->alias ?>"
-    data-properties="<?= htmlspecialchars(json_encode($properties)) ?>"
-    <?php if(isset($relatedModel->rules) && $relatedModel->rules): ?>
-        data-validation="<?= $validation ?>"
-    <?php endif ?>
-    data-hasmany-container
+<div data-owl="hasmany"
+    data-alias="<?= $alias ?>"
+    data-config="<?= $config ?>"
+    <?php if ($default) echo 'class="default"' ?>
 >
 
-    <!-- Relation list -->
-    <ol data-hasmany-list>
+    <!-- Deferred delete -->
+    <input type="hidden"
+        data-control="delete-box"
+        name="<?= $this->alias ?>[delete]" value="[]" />
+
+    <!-- Render the list -->
+    <div data-control="list-container">
         <?= $this->makePartial('list', ['items' => $items]) ?>
-    </ol>
+    </div>
 
-    <!-- Add button -->
-    <a href="javascript:;"
-        data-hotkey="ctrl+i, cmd+i"
-        class="add-item"
-        data-control="add-item"
-    >
-        <i class="<?= $add_icon ?>"></i><?= $add_label ?>
-    </a>
+    <!-- Add relation button -->
+    <?= $this->makePartial('add') ?>
 
-    <!-- List item template -->
-    <script type="text/template" data-hasmany-template>
-        <?= $this->makePartial('item', [
-            'item' => [
-                'data' => false,
-                'html' => $this->makePartial($partial)
-            ]
-        ]); ?>
+    <!-- Popup template -->
+    <script type="text/template" data-control="template">
+        <?= str_replace('script>', 'script&gt;', $this->makePartial('popup', ['formWidget' => $formWidget])) ?>
     </script>
 
-    <!-- Item editor -->
-    <script type="text/template" data-hasmany-editor>
-        <?= $this->makePartial('editor') ?>
-    </script>
-
-    <!-- Attach the hasManyEditor -->
+    <!-- Initialize hasmany -->
     <script type="text/javascript">
-        $(document).on('ready', function() {
-            $('[data-hasmany-container][data-alias="<?= $this->alias ?>"]').hasManyEditor(
-                '<?= $this->alias ?>',
-                <?= isset($this->config->sort_column) ? 'true' : 'false' ?>
-            )
+        $(document).on('render', function() {
+            $('[data-owl="hasmany"][data-alias="<?= $alias ?>"]').HasMany()
         })
     </script>
+
 </div>

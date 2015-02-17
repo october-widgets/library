@@ -1,4 +1,6 @@
-<div class="owl-tagbox" data-alias="<?= $this->alias ?>">
+<div data-owl="tagbox" class="owl-tagbox"
+    data-alias="<?= $this->alias ?>"
+    data-config="<?= $config ?>">
 
     <!-- Tagbox container -->
     <ul data-control="list">
@@ -13,18 +15,16 @@
         </li>
     </ul>
 
-    <!-- Attach tagbox handler -->
-    <script type="text/javascript">
-        $(function() {
-            $('.owl-tagbox[data-alias="<?= $this->alias ?>"]').tagbox(
-                <?= $config ?>
-            )
-        })            
-    </script>
-
     <!-- Tag template -->
     <script type="text/template" data-control="template">
         <?= $this->makePartial('tag') ?>
     </script>
-    
+
+    <!-- Initialize tagbox -->
+    <script type="text/javascript">
+        $(document).on('render', function() {
+            $('[data-owl="tagbox"][data-alias="<?= $this->alias ?>"]').tagbox()
+        });
+    </script>
+
 </div>

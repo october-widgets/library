@@ -30,7 +30,7 @@ class Widget extends FormWidgetBase
         }
 
         // Slugify
-        $config['slugify'] = isset($this->config->slugify) && 
+        $config['slugify'] = isset($this->config->slugify) &&
             filter_var($this->config->slugify, FILTER_VALIDATE_BOOLEAN);
 
         // Accepted characters
@@ -49,7 +49,7 @@ class Widget extends FormWidgetBase
 
         // Javascript configuration
         $config['fieldName'] = $this->fieldName;
-        $this->vars['config'] = json_encode($config);
+        $this->vars['config'] = htmlspecialchars(json_encode($config));
 
         // Pre-populated tags
         $fieldName = $this->fieldName;
@@ -63,7 +63,20 @@ class Widget extends FormWidgetBase
             : "Enter tags...";
 
         // Prepopulated tags
-        $this->vars['tags'] = $this->model->$fieldName;
+        $tags = [];
+        if (is_array($this->model->$fieldName) && count($this->model->$fieldName)) {
+            foreach ($this->model->$fieldName as $tag)
+                $tags[] = htmlspecialchars($tag);
+        } else if ($loadValue = $this->getLoadValue()) {
+            $loadValue = json_decode($loadValue, true);
+            foreach ($loadValue as $tag) {
+                if (empty($tag))
+                    continue;
+                $tags[] = htmlspecialchars($tag);
+            }
+        }
+
+        $this->vars['tags'] = $tags;
     }
 
     /**
@@ -82,12 +95,9 @@ class Widget extends FormWidgetBase
     public function getSaveValue($value)
     {
         $data   = [];
-        $input  = post($this->fieldName);
-        $count  = count($input);
-
-        foreach ($input as $field) {
-            if (--$count <= 0)
-                break;
+        foreach (post($this->fieldName) as $field) {
+            if (empty($field))
+                continue;
             $data[] = $field;
         }
 

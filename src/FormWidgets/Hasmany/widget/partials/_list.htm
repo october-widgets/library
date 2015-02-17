@@ -1,3 +1,7 @@
-<?php foreach ($items as $item): ?>
-    <?= $this->makePartial('item', ['item' => $item]) ?>
-<?php endforeach ?>
+<ol data-control="list">
+    <?php foreach ($items as $item): ?>
+        <li data-control="item">
+            <?= $item ?>
+        </li>
+    <?php endforeach ?>
+</ol>

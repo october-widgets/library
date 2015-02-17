@@ -1,0 +1,128 @@
+/* Modal */
+div[data-owl="hasmany"] .modal-footer.in-progress button {
+    visibility: hidden;
+}
+div[data-owl="hasmany"] .modal-footer [data-control="loading-indicator"] {
+    bottom: 5px;
+    position: absolute;
+    right: 0;
+}
+
+/* Add button */
+div[data-owl="hasmany"].default a[data-control="add-model"] {
+    display: block;
+    margin-top: 20px;
+    padding: 13px 15px;
+    border: dotted 2px #ebebeb;
+    color: #bdc3c7;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+.compact-container div[data-owl="hasmany"].default a[data-control="add-model"] {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+div[data-owl="hasmany"].default a[data-control="add-model"] i {
+    margin-right: 10px;
+    font-size: 14px;
+}
+div[data-owl="hasmany"].default a[data-control="add-model"]:hover {
+    text-decoration: none;
+    background-color: #58b6f7 !important;
+    color: #ffffff !important;
+    border: none;
+    padding: 15px 17px;
+}
+
+/* List */
+div[data-owl="hasmany"].default ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+}
+div[data-owl="hasmany"].default ol li {
+    position: relative;
+    height: 60px;
+    color: #666;
+}
+div[data-owl="hasmany"].default ol li.delete-highlight {
+    background: #C30;
+    color: #fefefe;
+}
+div[data-owl="hasmany"].default ol li:hover {
+    background: #58B6F7;
+    color: #fefefe;
+    cursor: pointer;
+}
+div[data-owl="hasmany"].default ol li .item {
+    display: table;
+    height: 60px;
+    width: 100%;
+    position: absolute;
+}
+div[data-owl="hasmany"].default ol li .icon {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 22px;
+}
+div[data-owl="hasmany"].default ol li .icon i {
+    display: block;
+    width: 60px;
+    text-align: center;
+}
+div[data-owl="hasmany"].default ol li .content {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+}
+div[data-owl="hasmany"].default ol li .content.no-icon {
+    padding-left: 15px;
+}
+
+/* List sorting */
+div[data-owl="hasmany"].default ol.sorting li {
+    background: #F9F9F9 !important;
+    color: #666 !important;
+}
+div[data-owl="hasmany"].default ol.sorting li .actions {
+    visibility: hidden !important;
+}
+div[data-owl="hasmany"].default ol li.sortable-ghost {
+    background: #58B6F7 !important;
+    color: #fefefe !important;
+    z-index: 999;
+}
+
+/* List actions */
+div[data-owl="hasmany"].default ol li .actions {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    width: 50%;
+}
+div[data-owl="hasmany"].default ol li .actions a {
+    font-size: 22px;
+    float: right;
+    margin-left: 1px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    display: none;
+}
+div[data-owl="hasmany"].default ol li:hover .actions a, ol .sortable-placeholder .actions a {
+    background: #2581B8;
+    text-align: center;
+    border-right: 1px solid #328ec8;
+    text-decoration: none;
+    color: #fefefe;
+    display: inline-block;
+}
+div[data-owl="hasmany"].default ol li .actions [data-control="sort-handle"] {
+    cursor: move;
+}

@@ -5,7 +5,9 @@
      */
     var tagbox = function (el, config) {
         this.$el        = $(el)
-        this.config     = config
+
+        this.alias      = this.$el.data('alias')
+        this.config     = this.$el.data('config')
         this.$tags      = this.$el.find('[data-control="tags"]')
         this.$list      = this.$el.find('[data-control="list"]')
         this.$last      = this.$el.find('[data-control="last"]')
@@ -21,23 +23,8 @@
     tagbox.prototype.init = function () {
         var self = this
 
-        // Populates the tagbox using the owl-array-fill event. This is used
-        // for dynamically created widgets.
-        $(document).on('owl-array-fill', function(e, data) {
-            if (data.fieldName == self.config.fieldName) {
-                data.value.forEach(function(tag) {
-                    self.addTag(tag)
-                })
-            }
-        });
-
-        // Filter input
-        this.$input.on('change keydown keyup paste', function() {
-            self.filterInput()
-        })
-
         // Listen for break keys
-        this.$input.on('keydown', function(e) {
+        this.$input.unbind().on('keydown', function(e) {
             var code = e.keyCode || e.which
             if ($.inArray(code, self.config.break_codes) !== -1) {
                 e.preventDefault()
@@ -54,6 +41,11 @@
             self.$list.find('.pre-delete').removeClass('pre-delete')
         })
 
+        // Filter input
+        this.$input.on('change keydown keyup paste', function() {
+            self.filterInput()
+        })
+
         // Listen for tag removals through X button
         this.$list.on('click', '[data-control="remove"]', function() {
             $(this).closest('li').remove()
@@ -67,9 +59,6 @@
             self.$list.addClass('focused')
         })
         this.$input.on('blur', function() {
-            if (self.$input.val().length > 0) {
-                self.addTag()
-            }
             self.$list.removeClass('focused')
         })
     }
@@ -80,6 +69,7 @@
     tagbox.prototype.filterInput = function() {
         var filter = new RegExp(this.config.filter, 'g'),
             original = this.$input.val()
+
         this.$input.val(original.replace(filter, ''))
     }
 
@@ -89,7 +79,7 @@
     tagbox.prototype.addTag = function(tag) {
         this.filterInput()
 
-        if (!tag.length) {
+        if (typeof tag != 'undefined' && !tag.length) {
             return false
         }
 
@@ -107,11 +97,11 @@
         // Sluggify the tag
         if (this.config.slugify) {
             tag = tag.toLowerCase()
-                .replace(/\s+/g, '-')           // Replace spaces with -
+                .replace(/\s+/g, '-')           // Replace spaces with hyphens
                 .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-                .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-                .replace(/^-+/, '')             // Trim - from start of text
-                .replace(/-+$/, '')             // Trim - from end of text
+                .replace(/\-\-+/g, '-')         // Replace multiple hyphens
+                .replace(/^-+/, '')             // Trim hyphens from start of text
+                .replace(/-+$/, '')             // Trim hyphens from end of text
         }
 
         var cleanTag = tag
@@ -164,25 +154,23 @@
 
     /**
      * Validates a tag
+     * @return  boolean
      */
     tagbox.prototype.validation = function(tag) {
         var expression = new RegExp(this.config.validation)
         return expression.test(tag)
     }
 
+    /*
+     * Bind and construct non-conflicting tagbox
+     */
     var old = $.fn.tagbox
 
-    /**
-     * Bind the container to our editor
-     */
     $.fn.tagbox = function (config) {
         return new tagbox($(this), config)
     }
 
     $.fn.tagbox.Constructor = tagbox
-
-    // MENUITEMSEDITOR NO CONFLICT
-    // =================
 
     $.fn.tagbox.noConflict = function () {
         $.fn.tagbox = old

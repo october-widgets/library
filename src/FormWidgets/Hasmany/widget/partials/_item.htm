@@ -1,4 +1,27 @@
-<li data-hasmany-item data-properties="<?= $item['data'] ?>">
-    <input type="hidden" name="<?= $this->alias ?>[]" value="<?= $item['data'] ?>" data-properties />
-    <?= $item['html'] ?>
-</li>
+<div class="item">
+
+    <?php if (isset($this->config->default['icon'])): ?>
+       <div class="icon"><i class="<?= $this->config->default['icon'] ?>"></i></div>
+    <?php endif ?>
+
+    <div class="content<?php if (!isset($this->config->default['icon'])) echo ' no-icon' ?>">
+        <?php if (isset($this->config->default['label'])): ?>
+            <div class="label"><?= $this->config->default['label'] ?></div>
+        <?php endif ?>
+
+        <?php if (isset($this->config->default['comment'])): ?>
+            <div class="comment"><?= $this->config->default['comment'] ?></div>
+        <?php endif ?>
+    </div>
+
+    <div class="actions">
+        <?php if (isset($this->config->sortColumn)): ?>
+            <a href="#" class="sort-handle" data-control="sort-handle"><i class="icon-bars"></i></a>
+        <?php endif ?>
+
+        <a href="#" data-control="delete">
+            <i class="icon-trash-o"></i>
+        </a>
+    </div>
+
+</div>
