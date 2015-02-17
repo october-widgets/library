@@ -11,7 +11,7 @@ class Widget extends FormWidgetBase {
     /**
      * {@inheritDoc}
      */
-    public $defaultAlias = 'owl-HasMany';
+    public $defaultAlias = 'owl-hasmany';
 
     /**
      * @var Model   Related model

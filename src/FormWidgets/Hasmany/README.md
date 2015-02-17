@@ -15,7 +15,7 @@ Next, register the widget in your ```Plugin.php``` file.
 public function registerFormWidgets()
 {
     return [
-        'Owl\FormWidgets\Hasmany\Widget' => [
+        'Owl\FormWidgets\HasMany\Widget' => [
             'label' => 'Hasmany',
             'alias' => 'owl-hasmany'
         ],
