@@ -26,7 +26,7 @@
         // Listen for break keys
         this.$input.unbind().on('keydown', function(e) {
             var code = e.keyCode || e.which
-            if ($.inArray(code, self.config.break_codes) !== -1) {
+            if ($.inArray(code, self.config.breakCodes) !== -1) {
                 e.preventDefault()
                 self.addTag($(this).val())
             }
@@ -86,7 +86,7 @@
         // Validate the tag
         if (this.config.validation && this.validation(tag) == false) {
             $.oc.flashMsg({
-                text: this.config.validation_message,
+                text: this.config.validationMessage,
                 'class': 'error',
                 'interval': 3
             })

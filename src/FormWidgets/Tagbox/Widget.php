@@ -21,12 +21,12 @@ class Widget extends FormWidgetBase
     public function prepareVars()
     {
         // Break key codes
-        if (isset($this->config->break_codes)) {
-            $config['break_codes'] = is_array($this->config->break_codes)
-                ? $this->config->break_codes
-                : [$this->config->break_codes];
+        if (isset($this->config->breakCodes)) {
+            $config['breakCodes'] = is_array($this->config->breakCodes)
+                ? $this->config->breakCodes
+                : [$this->config->breakCodes];
         } else {
-            $config['break_codes'] = [13, 9];
+            $config['breakCodes'] = [13, 9];
         }
 
         // Slugify
@@ -44,8 +44,8 @@ class Widget extends FormWidgetBase
             : false;
 
         // Validation message
-        $config['validation_message'] = isset($this->config->validation_message)
-            ? $this->config->validation_message : 'The tag format is invalid.';
+        $config['validationMessage'] = isset($this->config->validationMessage)
+            ? $this->config->validationMessage : 'The tag format is invalid.';
 
         // Javascript configuration
         $config['fieldName'] = $this->fieldName;
