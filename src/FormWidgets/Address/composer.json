@@ -1,8 +1,8 @@
 {
-    "name": "owl/geoaddress",
-    "description": "GeoAddress widget for OctoberCMS.",
+    "name": "owl/address",
+    "description": "Address widget for OctoberCMS.",
     "homepage": "http://github.com/october-widgets",
-    "keywords": ["october cms", "october", "owl", "geoaddress"],
+    "keywords": ["october cms", "october", "owl", "address"],
     "license": "MIT",
     "authors": [
         {
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Owl\\FormWidgets\\GeoAddress\\": ""
+            "Owl\\FormWidgets\\Address\\": ""
         }
     },
     "extra": {

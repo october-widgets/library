@@ -1,4 +1,4 @@
-<?php namespace Owl\FormWidgets\GeoAddress;
+<?php namespace Owl\FormWidgets\Address;
 
 use Backend\Classes\FormWidgetBase;
 use HTML;
@@ -8,7 +8,7 @@ class Widget extends FormWidgetBase
     /**
      * {@inheritDoc}
      */
-    public $defaultAlias = 'geoaddress';
+    public $defaultAlias = 'address';
 
     protected $fieldMap;
 
