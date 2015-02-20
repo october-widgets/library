@@ -15,7 +15,7 @@
                 suffix: "<?= $config['suffix'] ?>",
                 prefix: "<?= $config['prefix'] ?>",
                 allowNegative: <?= $config['allowNegative'] ?>
-            }).maskMoney('mask', <?= $loadValue ?>);
+            })<?php if ($loadValue) echo ".maskMoney('mask', $loadValue)" ?>
         })
     </script>
 
