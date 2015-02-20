@@ -4,17 +4,17 @@
     <input type="text"
         name="<?= $this->alias ?>"
         class="form-control"
-        placeholder="<?= $placeholder ?>"
+        placeholder="<?= $config['placeholder'] ?>"
     />
 
     <script type="text/javascript">
         $(function() {
             $('[data-owl="money"][data-alias="<?= $this->alias ?>"] input[name="<?= $this->alias ?>"]').maskMoney({
-                thousands: '<?= $thousands ?>',
-                decimal: '<?= $decimal ?>',
-                suffix: '<?= $suffix ?>',
-                prefix: '<?= $prefix ?>',
-                allowNegative: <?= $allowNegative ?>
+                thousands: "<?= $config['thousands'] ?>",
+                decimal: "<?= $config['decimal'] ?>",
+                suffix: "<?= $config['suffix'] ?>",
+                prefix: "<?= $config['prefix'] ?>",
+                allowNegative: <?= $config['allowNegative'] ?>
             }).maskMoney('mask', <?= $loadValue ?>);
         })
     </script>

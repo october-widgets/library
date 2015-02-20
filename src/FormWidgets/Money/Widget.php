@@ -2,6 +2,7 @@
 
 use Backend\Classes\FormField;
 use Backend\Classes\FormWidgetBase;
+use Config;
 
 class Widget extends FormWidgetBase
 {
@@ -30,29 +31,37 @@ class Widget extends FormWidgetBase
     {
         $this->vars['loadValue'] = $this->getLoadValue();
 
-        $this->vars['placeholder'] = isset($this->config->placeholder)
+        $this->vars['config']['placeholder'] = isset($this->config->placeholder)
             ? $this->config->placeholder
             : '0.00';
 
-        $this->vars['thousands'] = isset($this->config->thousands)
+        $this->vars['config']['thousands'] = isset($this->config->thousands)
             ? $this->config->thousands
             : ',';
 
-        $this->vars['decimal'] = isset($this->config->decimal)
+        $this->vars['config']['decimal'] = isset($this->config->decimal)
             ? $this->config->decimal
             : '.';
 
-        $this->vars['suffix'] = isset($this->config->suffix)
+        $this->vars['config']['suffix'] = isset($this->config->suffix)
             ? $this->config->suffix
-            : false;
+            : '';
 
-        $this->vars['prefix'] = isset($this->config->prefix)
+        $this->vars['config']['prefix'] = isset($this->config->prefix)
             ? $this->config->prefix
-            : false;
+            : '';
 
-        $this->vars['allowNegative'] = isset($this->config->allowNegative) && $this->config->allowNegative
+        $this->vars['config']['allowNegative'] = isset($this->config->allowNegative) && $this->config->allowNegative
             ? 'true'
             : 'false';
+
+        // Allow plugins to override the configuration
+        if ($config = Config::get('owl.formwidgets::money')) {
+            if (is_array($config) && count($config) >= 1) {
+                foreach ($config as $key => $value)
+                    $this->vars['config'][$key] = $value;
+            }
+        }
     }
 
     /**
