@@ -4,7 +4,7 @@ Money form widget for OctoberCMS.
 ![Packagist](https://img.shields.io/packagist/dt/owl/money.svg)
 
 ### Installation
-To install the Tagbox widget with your plugin, add the following to your plugin's ```composer.json``` file.
+To install the Money widget with your plugin, add the following to your plugin's ```composer.json``` file.
 
 ```json
 "require": {
@@ -25,7 +25,7 @@ public function registerFormWidgets()
 ```
 
 ### Usage
-To use the Tagbox widget, simply declare a field type as ```owl-money```
+To use the Money widget, simply declare a field type as ```owl-money```
 ```yaml
 price:
     label: Price
@@ -40,4 +40,12 @@ price:
     type: owl-money
     prefix: "$ "
     allowNegative: true
+```
+
+You may need to define the widget configuration dynamically. For example, your plugin might have a variable currency symbol. This can be achieved like so...
+```php
+Config::set('owl.formwidgets::money', [
+    'prefix'        => '$ ',
+    'placeholder'   => '$ 0.00',
+]);
 ```
