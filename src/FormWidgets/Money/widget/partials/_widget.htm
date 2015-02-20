@@ -1,0 +1,22 @@
+<div data-owl="money" class="owl-money"
+    data-alias="<?= $this->alias ?>"
+>
+    <input type="text"
+        name="<?= $this->alias ?>"
+        class="form-control"
+        placeholder="<?= $placeholder ?>"
+    />
+
+    <script type="text/javascript">
+        $(function() {
+            $('[data-owl="money"][data-alias="<?= $this->alias ?>"] input[name="<?= $this->alias ?>"]').maskMoney({
+                thousands: '<?= $thousands ?>',
+                decimal: '<?= $decimal ?>',
+                suffix: '<?= $suffix ?>',
+                prefix: '<?= $prefix ?>',
+                allowNegative: <?= $allowNegative ?>
+            }).maskMoney('mask', <?= $loadValue ?>);
+        })
+    </script>
+
+</div>
