@@ -9,7 +9,7 @@
 
     <script type="text/javascript">
         $(function() {
-            $('[data-owl="money"][data-alias="<?= $this->alias ?>"] input[name="<?= $this->alias ?>"]').maskMoney({
+            $('[data-owl="money"][data-alias="<?= $this->alias ?>"] input[name="<?= $this->fieldName ?>"]').maskMoney({
                 thousands: "<?= $config['thousands'] ?>",
                 decimal: "<?= $config['decimal'] ?>",
                 suffix: "<?= $config['suffix'] ?>",
