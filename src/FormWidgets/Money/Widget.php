@@ -71,7 +71,7 @@ class Widget extends FormWidgetBase
      */
     public function getSaveValue($value)
     {
-        if (!$input = post($this->alias))
+        if (!$input = input($this->fieldName)
             return 0;
 
         $input = preg_replace("/[^0-9]/", '', $input);
