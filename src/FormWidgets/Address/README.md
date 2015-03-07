@@ -45,6 +45,9 @@ address:
         zip: zip
         country: country_code
         state: state_code
+        name: place_name
+        address: place_address
+        formataddress: fmt_address
 ```
 
 Now define fields which should get filled up with the result values. The field name should be same as the value specified in the fieldMap fields.
@@ -61,6 +64,12 @@ latitude:
     label: Latitude
 longitude:
     label: Longitude
+place_name:
+    label: Place Name
+place_address:
+    label: Place Address
+fmt_address:
+    label: Formatted Address
 ```
 The widget automatically detects the presence of the fields and applies the correct values whenever a place is selected using the autocomplete.
 
@@ -74,3 +83,6 @@ Available mappings:
 * country-long
 * latitude
 * longitude
+* name
+* address
+* formataddress
