@@ -43,13 +43,14 @@ emails:
     validationMessage: Please enter a valid email address.
 ```
 
-A ```filter``` expression may also be used to block unwanted characters. In the following example, we'll block all non alpha-numeric or space characters.
+A ```filter``` expression may also be used to block unwanted characters. In the following example, we'll block all non alpha-numeric or space characters. The default css may be customized or removed by specifying a ```cssPath``` attribute.
 
 ```yaml
 tags:
     label: Tags
     type: owl-tagbox
-    filter: [^a-zA-Z0-9\ ]
+    filter: "[^a-zA-Z0-9\ ]"
+    cssPath: /plugins/vendor/plugin/assets/css/custom-tagbox.css
 ```
 
 Lastly, a tag may be "slugified" upon entry by setting the ```slugify``` parameter to ```true```.
