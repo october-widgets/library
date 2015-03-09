@@ -45,7 +45,13 @@ class Widget extends FormWidgetBase
 
         // Validation message
         $config['validationMessage'] = isset($this->config->validationMessage)
-            ? $this->config->validationMessage : 'The tag format is invalid.';
+            ? $this->config->validationMessage
+            : 'The tag format is invalid.';
+
+        // Disable auto-focus
+        $config['autofocus'] = isset($this->config->autofocus)
+            ? (bool) $this->config->autofocus
+            : true;
 
         // Javascript configuration
         $config['fieldName'] = $this->fieldName;
