@@ -14,8 +14,6 @@
         this.$input     = this.$el.find('[data-control="tagbox-input"]')
         this.$template  = this.$el.find('[data-control="template"]')
 
-        console.log (this.config)
-
         this.init()
     }
 
