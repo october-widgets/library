@@ -119,7 +119,7 @@ class Widget extends FormWidgetBase {
     {
         // Load and popupate the related model
         $relationship = $this->loadRelationship();
-        if ($data = post(':model')) {
+        if ($data = input(':model')) {
             foreach ($data as $key => $value)
                 $relationship->model->$key = $value;
         }
@@ -136,21 +136,22 @@ class Widget extends FormWidgetBase {
     public function onProcessForm()
     {
         // Find or new the model
-        $model = ($id = post('id')) && $id
+        $model = ($id = input('id')) && $id
             ? $this->relatedModel->findOrNew($id)
             : new $this->relatedModel;
 
         // Popuplate and validate the model with our form data
-        foreach (post() as $key => $value) {
+        foreach (input() as $key => $value) {
             if ($key == 'id' || $key == 'created_at' || $key == 'updated_at')
                 continue;
             $model->$key = $value;
+            $extraData[$key] = $value;
         }
         $model->validate();
 
         // Render the partial and return it as our list item
         return [
-            'item' => $this->loadItemPartial($model)
+            'item' => $this->loadItemPartial($model, $extraData)
         ];
     }
 
@@ -159,18 +160,28 @@ class Widget extends FormWidgetBase {
      * @param   Model   $item
      * @return  string
      */
-    private function loadItemPartial($item)
+    private function loadItemPartial($item, $extraData = false)
     {
         // Convert our item data to a html-safe json object
         $data = [];
         foreach ($item->toArray() as $key => $value) {
             // If the item is json, convert it to an array and filter empty values
-            $jsonArray = json_decode($value, true);
-            if (json_last_error() == JSON_ERROR_NONE && is_array($jsonArray))
-                $value = array_filter($jsonArray);
-
+            if (is_string($value)) {
+                $jsonArray = json_decode($value, true);
+                if (json_last_error() == JSON_ERROR_NONE && is_array($jsonArray))
+                    $value = array_filter($jsonArray);
+            }
             $data[$key] = $value;
         }
+
+        if ($extraData) {
+            foreach ($extraData as $key => $value) {
+                if (array_key_exists($key, $data))
+                    continue;
+                $data[$key] = $value;
+            }
+        }
+
         $this->vars['modelData'] = htmlspecialchars(json_encode($data));
 
         $partialPath = isset($this->config->default)
@@ -194,7 +205,7 @@ class Widget extends FormWidgetBase {
      */
     public function getSaveValue($value)
     {
-        $formData = post($this->alias);
+        $formData = input($this->alias);
 
         // Create new models with deferred bindings, or update existing models
         $fieldName = $this->fieldName;
