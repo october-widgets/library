@@ -8,4 +8,5 @@
 ./git-subsplit.sh publish --no-tags src/FormWidgets/Tagbox:git@github.com:october-widgets/tagbox.git
 ./git-subsplit.sh publish --no-tags src/FormWidgets/Address:git@github.com:october-widgets/address.git
 ./git-subsplit.sh publish --no-tags src/FormWidgets/Money:git@github.com:october-widgets/money.git
+./git-subsplit.sh publish --no-tags src/FormWidgets/Password:git@github.com:october-widgets/password.git
 rm -rf .subsplit/

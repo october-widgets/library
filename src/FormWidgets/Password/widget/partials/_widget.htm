@@ -1,0 +1,17 @@
+<input
+    type="password"
+    id="<?= $this->getId('input') ?>"
+    name="<?= $name ?>"
+    value="<?= $value ?>"
+    class="form-control owl-password"
+    autocomplete="off" />
+
+<script type="text/javascript">
+    $(function() {
+        $('#<?= $this->getId('input') ?>').on('focus', function() {
+            $(this).hideShowPassword(true);
+        }).on('blur', function() {
+            $(this).hideShowPassword(false);
+        });
+    })
+</script>
