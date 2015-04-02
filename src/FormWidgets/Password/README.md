@@ -1,5 +1,5 @@
 # Password
-Hides input value while element is blurred.
+Uses [hideShowPassword](https://github.com/cloudfour/hideShowPassword) to mask input values on element blur.
 
 ![Packagist](https://img.shields.io/packagist/dt/owl/password.svg)
 
