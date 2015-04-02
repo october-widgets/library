@@ -25,7 +25,7 @@ public function registerFormWidgets()
 ```
 
 ### Usage
-To use the Tagbox widget, simply declare a field type as ```owl-password```
+To use the Password widget, simply declare a field type as ```owl-password```
 ```yaml
 password:
     label: Password
