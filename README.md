@@ -9,6 +9,9 @@ For installation instructions, see the individual widget repositories.
 | [Address](https://github.com/october-widgets/address)     | Google maps auto-complete for address inputs. |
 | [Comment](https://github.com/october-widgets/comment)     | Adding information to forms, without creating extra widgets. |
 | [Has Many](https://github.com/october-widgets/hasmany)    | Managing related models through a has-many/belongs-to relationship. |
+| [Knob](https://github.com/october-widgets/knob)           | A touch friendly widget to handle numeric fields. |
+| [Money](https://github.com/october-widgets/money)         | Accepting currency input. |
+| [Password](https://github.com/october-widgets/password)   | Masking input values on blur. |
 | [Tagbox](https://github.com/october-widgets/tagbox)       | Accepting an array of strings. |
 
 ### Installing the complete library
