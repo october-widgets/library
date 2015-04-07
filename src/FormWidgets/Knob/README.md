@@ -1,7 +1,7 @@
 # Knob
 A touch friendly widget to handle numeric fields.
 
-[jQuery Knob](https://github.com/aterrien/jQuery-Knob) is © 2012 Anthony Terrien under the MIT license. OctoberCMS widget created by [Keios Web](http://keios.eu).
+[jQuery Knob](https://github.com/aterrien/jQuery-Knob) is © 2012 Anthony Terrien under the MIT license. OctoberCMS widget created by [Keios Solutions](http://keios.eu).
 
 ![Packagist](https://img.shields.io/packagist/dt/owl/knob.svg)
 
