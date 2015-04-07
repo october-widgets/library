@@ -1,0 +1,17 @@
+.owl-knob {
+    display: table;
+}
+
+.owl-knob .knob-row {
+    display: table-row;
+}
+
+.owl-knob .knob {
+    display: table-cell;
+}
+
+.owl-knob .knob-field {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 20px;
+}

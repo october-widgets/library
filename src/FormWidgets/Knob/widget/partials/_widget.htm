@@ -1,0 +1,29 @@
+<?php
+if ($this->previewMode)
+    $knobSettings['readOnly'] = true;
+?>
+
+<div class="owl-knob">
+    <div class="knob-row">
+        <div class="knob">
+            <input type="text"
+                id="<?= $this->getId() ?>"
+                name="<?= $name ?>"
+                class="knobWidget"
+                value="<?= $value ?>"
+                <?php foreach ($knobSettings as $setting => $settingValue): ?>
+                    data-<?= $setting ?>="<?= $settingValue ?>"
+                <?php endforeach; ?>
+            >
+        </div>
+        <div class="knob-field">
+            <label><?= trans($label) ?></label>
+            <p class="help-block"><?= trans($comment) ?></p>
+        </div>
+    </div>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            $('#<?= $this->getId() ?>').knob()
+        })
+    </script>
+</div>
