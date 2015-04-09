@@ -17,7 +17,7 @@ public function registerFormWidgets()
     return [
         'Owl\FormWidgets\Comment\Widget' => [
             'label' => 'Comment',
-            'alias' => 'owl-comment'
+            'code'  => 'owl-comment'
         ],
     ];
 }
@@ -31,6 +31,6 @@ comment:
     label: Hello world
     comment: >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor
-        imperdiet elit, sed pellentesque eros. Morbi blandit elit a turpis 
+        imperdiet elit, sed pellentesque eros. Morbi blandit elit a turpis
         pellentesque tincidunt.
 ```

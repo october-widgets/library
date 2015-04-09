@@ -18,7 +18,7 @@ public function registerFormWidgets()
     return [
         'Owl\FormWidgets\Tagbox\Widget' => [
             'label' => 'Tagbox',
-            'alias' => 'owl-tagbox'
+            'code'  => 'owl-tagbox'
         ],
     ];
 }
