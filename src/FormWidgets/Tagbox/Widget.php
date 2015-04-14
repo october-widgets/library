@@ -75,10 +75,12 @@ class Widget extends FormWidgetBase
                 $tags[] = htmlspecialchars($tag);
         } else if ($loadValue = $this->getLoadValue()) {
             $loadValue = json_decode($loadValue, true);
-            foreach ($loadValue as $tag) {
-                if (empty($tag))
-                    continue;
-                $tags[] = htmlspecialchars($tag);
+            if ($loadValue && is_array($loadValue)) {
+                foreach ($loadValue as $tag) {
+                    if (empty($tag))
+                        continue;
+                    $tags[] = htmlspecialchars($tag);
+                }
             }
         }
 
