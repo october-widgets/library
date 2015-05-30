@@ -1,0 +1,27 @@
+{
+    "name": "owl/treesort",
+    "description": "Tree sort widget for OctoberCMS.",
+    "homepage": "http://github.com/october-widgets",
+    "keywords": ["octobercms", "october", "owl", "treesort"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Scott Bedard",
+            "email": "scottbedard90@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Owl\\Widgets\\TreeSort\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}

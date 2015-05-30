@@ -1,0 +1,49 @@
+<div data-owl="treesort">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="popup">&times;</button>
+        <h4 class="modal-title"><?= $header ?></h4>
+    </div>
+
+    <div class="modal-body form-container">
+        <?php if ($records && $records->count() > 0): ?>
+            <div
+                class="control-treelist"
+                data-control="treelist"
+                data-handle="a.move"
+                data-stripe-load-indicator>
+                <ol data-control="records">
+                    <?= $this->makePartial('tree_records', ['records' => $records]) ?>
+                </ol>
+            </div>
+        <?php else: ?>
+            <?= $empty ?>
+        <?php endif ?>
+    </div>
+
+    <div class="modal-footer">
+        <div class="loading-indicator-container">
+            <div class="loading-indicator-container">
+                <div class="loading-indicator">
+                    <div><?= e(trans('backend::lang.form.saving')) ?></div>
+                    <span></span>
+                </div>
+                <?php if ($records && $records->count() > 0): ?>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-control="apply-btn"
+                        data-hotkey="ctrl+s, cmd+s, enter">
+                        <?= e(trans('backend::lang.form.apply')) ?>
+                    </button>
+                <?php endif ?>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="popup"
+                    data-hotkey="esc">
+                    <?= e(trans('backend::lang.form.cancel')) ?>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

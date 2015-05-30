@@ -1,0 +1,17 @@
+<?php foreach ($records as $record): ?>
+
+    <li data-record-id="<?= $record->id ?>">
+        <div class="record">
+            <a href="javascript:;" class="move"></a>
+            <span><?= $record->name ?></span>
+        </div>
+
+        <ol data-parent-id="<?= $record->id ?>">
+            <?php if ($record->getChildren()): ?>
+                <?= $this->makePartial('tree_records', ['records' => $record->getChildren()]) ?>
+            <?php endif ?>
+        </ol>
+
+    </li>
+
+<?php endforeach ?>

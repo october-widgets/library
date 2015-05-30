@@ -1,0 +1,13 @@
+div[data-owl="treesort"] .modal-body {
+  padding-bottom: 20px;
+}
+div[data-owl="treesort"] .modal-footer .loading-indicator {
+  display: none;
+  padding: 0;
+}
+div[data-owl="treesort"] .modal-footer .loading-indicator div,
+div[data-owl="treesort"] .modal-footer .loading-indicator span {
+  float: right;
+  margin-left: 15px;
+  position: relative;
+}
