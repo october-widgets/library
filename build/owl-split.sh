@@ -10,4 +10,5 @@
 ./git-subsplit.sh publish --no-tags src/FormWidgets/Address:git@github.com:october-widgets/address.git
 ./git-subsplit.sh publish --no-tags src/FormWidgets/Money:git@github.com:october-widgets/money.git
 ./git-subsplit.sh publish --no-tags src/FormWidgets/Password:git@github.com:october-widgets/password.git
+./git-subsplit.sh publish --no-tags src/Widgets/TreeSort:git@github.com:october-widgets/treesort.git
 rm -rf .subsplit/
