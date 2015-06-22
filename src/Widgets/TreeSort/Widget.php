@@ -51,8 +51,13 @@ class Widget extends WidgetBase
     {
         $model = $this->controller->widget->list->model;
 
+        $records = $model::make()->getAllRoot();
+        if ($this->index) {
+            $records->sortBy($this->index);
+        }
+
         return $this->makePartial('popup', [
-            'records'   => $model::make()->getAllRoot()->sortBy($this->index ?: 'position'),
+            'records'   => $records,
             'header'    => $this->header,
             'empty'     => $this->empty,
         ]);
