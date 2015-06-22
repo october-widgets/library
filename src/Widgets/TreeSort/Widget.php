@@ -8,14 +8,19 @@ class Widget extends WidgetBase
     protected $defaultAlias = 'treesort';
 
     /**
-     * @var string  The popup window's header
+     * @var string              The popup window's header
      */
     public $header = 'Sort records';
 
     /**
-     * @var string  Message to display when there are no records
+     * @var string              Message to display when there are no records
      */
     public $empty = 'There are no records to sort.';
+
+    /**
+     * @var boolean | string    The index to sort tree nodes by
+     */
+    public $index = false;
 
     /**
      * Returns information about this widget.
@@ -45,8 +50,9 @@ class Widget extends WidgetBase
     public function onLoadPopup()
     {
         $model = $this->controller->widget->list->model;
+
         return $this->makePartial('popup', [
-            'records'   => $model::make()->getAllRoot(),
+            'records'   => $model::make()->getAllRoot()->sortBy($this->index ?: 'position'),
             'header'    => $this->header,
             'empty'     => $this->empty,
         ]);

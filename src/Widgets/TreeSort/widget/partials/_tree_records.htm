@@ -8,7 +8,7 @@
 
         <ol data-parent-id="<?= $record->id ?>">
             <?php if ($record->getChildren()): ?>
-                <?= $this->makePartial('tree_records', ['records' => $record->getChildren()]) ?>
+                <?= $this->makePartial('tree_records', ['records' => $record->getChildren()->sortBy($this->index ?: 'position')]) ?>
             <?php endif ?>
         </ol>
 
