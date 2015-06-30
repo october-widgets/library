@@ -23,7 +23,11 @@ if ($this->previewMode)
     </div>
     <script type="text/javascript" language="javascript">
         $(function () {
-            $('#<?= $this->getId() ?>').knob()
+            $('#<?= $this->getId() ?>').knob({
+                change: function(value) {
+                    $(this.i).trigger('change', [value])
+                },
+            })
         })
     </script>
 </div>
