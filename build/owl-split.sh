@@ -18,6 +18,6 @@
 #
 # Behaviors
 #
-./git-subsplit.sh publish --no-tags src/Behaviors/ListCheckboxDelete:git@github.com:october-widgets/list-checkbox-delete.git
+./git-subsplit.sh publish --no-tags src/Behaviors/ListDelete:git@github.com:october-widgets/list-delete.git
 
 rm -rf .subsplit/

@@ -1,6 +1,6 @@
 {
-    "name": "owl/listcheckboxdelete",
-    "description": "Checkbox delete behavior for OctoberCMS.",
+    "name": "owl/list-delete",
+    "description": "List delete behavior for OctoberCMS.",
     "homepage": "http://github.com/october-widgets",
     "keywords": ["octobercms", "owl"],
     "license": "MIT",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Owl\\Behaviors\\ListCheckboxDelete\\": ""
+            "Owl\\Behaviors\\ListDelete\\": ""
         }
     },
     "extra": {

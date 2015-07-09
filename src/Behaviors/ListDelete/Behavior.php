@@ -1,10 +1,10 @@
-<?php namespace Owl\Behaviors;
+<?php namespace Owl\Behaviors\ListDelete;
 
 use Backend\Classes\ControllerBehavior;
 use Flash;
 use Lang;
 
-class ListCheckboxDelete extends ControllerBehavior {
+class Behavior extends ControllerBehavior {
 
     /**
      * @var Controller
@@ -26,7 +26,7 @@ class ListCheckboxDelete extends ControllerBehavior {
     }
 
     /**
-     * Delete selected rows
+     * Delete the selected rows
      *
      * @return  array
      */
@@ -37,11 +37,19 @@ class ListCheckboxDelete extends ControllerBehavior {
         if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
             foreach ($checkedIds as $id) {
                 if ($record = $model::find($id)) {
-                    $record->delete();
+                    if (method_exists($this->controller, 'overrideListDelete')) {
+                        $this->controller->overrideListDelete($record);
+                    } else {
+                        $record->delete();
+                    }
                 }
             }
 
-            Flash::success(Lang::get('backend::lang.list.delete_selected_success'));
+            if (method_exists($this->controller, 'afterListDelete')) {
+                $this->controller->afterListDelete();
+            } else {
+                Flash::success(Lang::get('backend::lang.list.delete_selected_success'));
+            }
         }
 
         return method_exists($this->controller, 'overrideListRefresh')
