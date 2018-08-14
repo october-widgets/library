@@ -15,7 +15,7 @@ For installation instructions, see the individual widget repositories.
 | [Tagbox](https://github.com/october-widgets/tagbox)       | Accepting an array of strings. |
 
 ### Installing the complete library
-To install the the complete library, add the following to your plugin's ```composer.json``` file.
+To install the complete library, add the following to your plugin's ```composer.json``` file.
 ```json
 "require": {
     "owl/library": "~1.0"
